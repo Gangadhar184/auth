@@ -27,7 +27,7 @@ public class User {
     @Column(unique = true, nullable = false, length = 50)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
     @Column(nullable = false)
@@ -38,6 +38,20 @@ public class User {
     @Column(name = "role")
     @Builder.Default
     private Set<String> roles = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private AuthProvider provider;
+
+    @Column(length = 255)
+    private String providerId;
+
+    @Column(length = 500)
+    private String imageUrl;
+
+    @Column
+    @Builder.Default
+    private Boolean emailVerified = false;
 
 
     @CreationTimestamp
